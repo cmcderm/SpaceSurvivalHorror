@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjqmbtiye07nm"]
+
+[ext_resource type="Material" uid="uid://bsuoyr4lrmdrn" path="res://Assets/Materials/placeholder_gray.tres" id="1_l4mef"]
+[ext_resource type="Script" uid="uid://3317kq8wooss" path="res://Assets/Prefabs/CharacterBody3d.cs" id="1_tgki7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tgki7"]
+material = ExtResource("1_l4mef")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebihn"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_tgki7")
+
+[node name="Mesh" type="Node3D" parent="CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Mesh"]
+material_override = ExtResource("1_l4mef")
+mesh = SubResource("CapsuleMesh_tgki7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_ebihn")
+
+[node name="Head" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head"]
