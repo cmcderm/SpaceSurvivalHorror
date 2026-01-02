@@ -7,23 +7,27 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebihn"]
 height = 1.8203125
 
-[node name="Node3D" type="Node3D"]
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_tgki7")
 
-[node name="Mesh" type="Node3D" parent="CharacterBody3D"]
+[node name="Mesh" type="Node3D" parent="."]
 
-[node name="Player" parent="CharacterBody3D/Mesh" instance=ExtResource("2_ebihn")]
+[node name="Player" parent="Mesh" instance=ExtResource("2_ebihn")]
 transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_ebihn")
 
-[node name="CameraMount" type="Node3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3361871, 0)
+[node name="CameraRig" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="ShoulderOffset" type="Node3D" parent="CameraRig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0)
+
+[node name="CameraMount" type="Node3D" parent="CameraRig/ShoulderOffset"]
 script = ExtResource("3_ebihn")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraMount"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6259228, 0.2838602, 0.7636001)
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraRig/ShoulderOffset/CameraMount"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig/ShoulderOffset/CameraMount/SpringArm3D"]
