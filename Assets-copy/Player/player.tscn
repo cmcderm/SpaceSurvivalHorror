@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dtlpy4rfrj8rn"]
+
+[ext_resource type="Script" path="res://Assets/Prefabs/PlayerController.cs" id="1_dncc2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ngvoe"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yepln"]
+
+[node name="Player" type="Node3D" unique_id=429711971]
+script = ExtResource("1_dncc2")
+
+[node name="Body" type="Node3D" parent="." unique_id=1783240351]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=403948387]
+mesh = SubResource("CapsuleMesh_ngvoe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1376697490]
+shape = SubResource("CapsuleShape3D_yepln")
+
+[node name="Head" type="Node3D" parent="." unique_id=1240217652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=256029122]
