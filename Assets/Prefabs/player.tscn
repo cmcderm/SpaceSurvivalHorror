@@ -1,33 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjqmbtiye07nm"]
+[gd_scene format=3 uid="uid://b7a6x1xqfskrp"]
 
-[ext_resource type="Script" uid="uid://3317kq8wooss" path="res://Scripts/PlayerController/PlayerController.cs" id="1_tgki7"]
-[ext_resource type="PackedScene" uid="uid://ctrlmtucfgc6m" path="res://Blender/Player.gltf" id="2_ebihn"]
-[ext_resource type="Script" uid="uid://cqpnfinwh3gge" path="res://Scripts/PlayerController/PlayerCamera.cs" id="3_ebihn"]
+[ext_resource type="Script" uid="uid://cbrys568skcnf" path="res://Scripts/PlayerController/PlayerController.cs" id="1_tgki7"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebihn"]
-height = 1.8203125
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ngvoe"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yepln"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1455927111]
+axis_lock_linear_y = true
 script = ExtResource("1_tgki7")
 
-[node name="Mesh" type="Node3D" parent="."]
+[node name="Body" type="Node3D" parent="." unique_id=1783240351]
 
-[node name="Player" parent="Mesh" instance=ExtResource("2_ebihn")]
-transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=403948387]
+mesh = SubResource("CapsuleMesh_ngvoe")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("CapsuleShape3D_ebihn")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1376697490]
+shape = SubResource("CapsuleShape3D_yepln")
 
-[node name="CameraRig" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="Head" type="Node3D" parent="." unique_id=1240217652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
-[node name="ShoulderOffset" type="Node3D" parent="CameraRig"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0)
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=256029122]
 
-[node name="CameraMount" type="Node3D" parent="CameraRig/ShoulderOffset"]
-script = ExtResource("3_ebihn")
-
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraRig/ShoulderOffset/CameraMount"]
-
-[node name="Camera3D" type="Camera3D" parent="CameraRig/ShoulderOffset/CameraMount/SpringArm3D"]
+[node name="InteractionRay" type="RayCast3D" parent="." unique_id=1026918762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+target_position = Vector3(0, 0, -1.5)

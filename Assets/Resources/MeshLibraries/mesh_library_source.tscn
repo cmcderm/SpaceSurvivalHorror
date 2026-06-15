@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://x2bvp3bvgtgp"]
+
+[ext_resource type="ArrayMesh" uid="uid://by3kgg7vndbtj" path="res://Assets/kenney_space-station-kit/Models/OBJ format/floor.obj" id="1_s4bw5"]
+[ext_resource type="ArrayMesh" uid="uid://c35b8e5eorj7q" path="res://Assets/kenney_space-station-kit/Models/OBJ format/floor-panel.obj" id="2_x2jov"]
+[ext_resource type="ArrayMesh" uid="uid://0yqywb4p2pqj" path="res://Assets/kenney_space-station-kit/Models/OBJ format/floor-panel-straight.obj" id="3_wyxgo"]
+[ext_resource type="ArrayMesh" uid="uid://d1ueuxpsip1ei" path="res://Assets/kenney_space-station-kit/Models/OBJ format/floor-panel-end.obj" id="4_1vpx5"]
+[ext_resource type="ArrayMesh" uid="uid://cog6e0ocum3al" path="res://Assets/kenney_space-station-kit/Models/OBJ format/floor-panel-corner.obj" id="5_o7cxy"]
+[ext_resource type="ArrayMesh" uid="uid://jdwtfo2e5upa" path="res://Assets/kenney_space-station-kit/Models/OBJ format/floor-detail.obj" id="6_8tsxb"]
+[ext_resource type="ArrayMesh" uid="uid://tf6yghkqvxxo" path="res://Assets/kenney_space-station-kit/Models/OBJ format/floor-corner.obj" id="7_c0dq5"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3p8ui"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0.3, -0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.3, 0.5, 0.5, 0.3, -0.5, 0.5, 0, 0.5, 0.5, 0.3, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fxc0q"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.3, -0.5, 0.5, 0, -0.5, -0.5, 0.3, 0.5, 0.5, 0, 0.5, 0.5, 0.3, -0.5, 0.5, 0.3, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bvihp"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.3, -0.5, 0.5, 0, -0.5, -0.5, 0.3, 0.5, 0.5, 0, 0.5, 0.5, 0.3, -0.5, 0.5, 0.3, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p35fe"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.3, -0.5, 0.5, 0, -0.5, -0.5, 0.3, 0.5, 0.5, 0, 0.5, 0.5, 0.3, -0.5, 0.5, 0.3, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_36uij"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.3, -0.5, 0.5, 0, -0.5, -0.5, 0.3, 0.5, 0.5, 0, 0.5, 0.5, 0.3, -0.5, 0.5, 0.3, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cqepw"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.2999951, -0.5, 0.5, 0, -0.5, -0.5, 0.2999951, 0.5, 0.5, 0, 0.5, -0.35003915, 0.325, -0.35003915, 0.5, 0.2999951, -0.5, -0.35003915, 0.325, -0.30001956, 0.5, 0.2999951, 0.5, 0.2999217, 0.325, 0.34994125, -0.30001956, 0.325, -0.35003915, 0.34994125, 0.325, 0.2999217, 0.34994125, 0.325, 0.34994125)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tuvxo"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0, 0, -0.5, 0.3, -0.5, 0.5, 0, -0.5, 0, 0, 0.5, -0.5, 0.3, 0, 0.5, 0.3, -0.5, 0.5, 0, 0.5, 0, 0.3, 0.5, 0.5, 0.3, 0.5)
+
+[node name="MeshLibrarySource" type="Node3D" unique_id=329867776]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1871339190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+mesh = ExtResource("1_s4bw5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=809118385]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=933000055]
+shape = SubResource("ConvexPolygonShape3D_3p8ui")
+
+[node name="FloorPanel" type="MeshInstance3D" parent="." unique_id=1728792713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+mesh = ExtResource("2_x2jov")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FloorPanel" unique_id=765666668]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorPanel/StaticBody3D" unique_id=678726550]
+shape = SubResource("ConvexPolygonShape3D_fxc0q")
+
+[node name="FloorPanelStraight" type="MeshInstance3D" parent="." unique_id=747020738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+mesh = ExtResource("3_wyxgo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FloorPanelStraight" unique_id=590916477]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorPanelStraight/StaticBody3D" unique_id=1078368539]
+shape = SubResource("ConvexPolygonShape3D_bvihp")
+
+[node name="FloorPanelEnd" type="MeshInstance3D" parent="." unique_id=1731306441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+mesh = ExtResource("4_1vpx5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FloorPanelEnd" unique_id=478714]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorPanelEnd/StaticBody3D" unique_id=340953592]
+shape = SubResource("ConvexPolygonShape3D_p35fe")
+
+[node name="FloorPanelCorner" type="MeshInstance3D" parent="." unique_id=1136319136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+mesh = ExtResource("5_o7cxy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FloorPanelCorner" unique_id=428583633]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorPanelCorner/StaticBody3D" unique_id=1453103580]
+shape = SubResource("ConvexPolygonShape3D_36uij")
+
+[node name="FloorDetail" type="MeshInstance3D" parent="." unique_id=1321548374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+mesh = ExtResource("6_8tsxb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FloorDetail" unique_id=1438055385]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorDetail/StaticBody3D" unique_id=697383503]
+shape = SubResource("ConvexPolygonShape3D_cqepw")
+
+[node name="FloorCorner" type="MeshInstance3D" parent="." unique_id=542969769]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+mesh = ExtResource("7_c0dq5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FloorCorner" unique_id=34718195]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorCorner/StaticBody3D" unique_id=1833658543]
+shape = SubResource("ConvexPolygonShape3D_tuvxo")

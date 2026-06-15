@@ -6,8 +6,8 @@ namespace SpaceSurvivalHorror.Scripts.PlayerController {
 		[Export] public bool Enabled = true;
 		[Export] public float MoveSpeed = 5.0f;
 		[Export] public float JumpVelocity = 4.5f;
-		[Export] public float MouseSensitivity = 0.15f;
-		[Export] public float VerticalLookMax = 89f;	
+		[Export] public float MouseSensitivity = 0.001f;
+		[Export] public float VerticalLookMax = Mathf.DegToRad(89f);	
 
 		[Export] public Node3D Head = null!;
 		[Export] public Camera3D Camera = null!;
@@ -17,7 +17,7 @@ namespace SpaceSurvivalHorror.Scripts.PlayerController {
 
 		public override void _Ready() {
 			Head = GetNode<Node3D>("Head");
-			Camera = GetNode<Camera3D>("Head/Camera3d");
+			Camera = GetNode<Camera3D>("Head/Camera3D");
 			InteractionRay = GetNode<RayCast3D>("InteractionRay");
 
 			Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -28,17 +28,13 @@ namespace SpaceSurvivalHorror.Scripts.PlayerController {
 				RotateY(-mouseMotion.Relative.X * MouseSensitivity);	
 				
 				_pitch -= mouseMotion.Relative.Y * MouseSensitivity;
-				_pitch = Mathf.Clamp(_pitch, -MouseSensitivity, MouseSensitivity);
+				_pitch = Mathf.Clamp(_pitch, -VerticalLookMax, VerticalLookMax);
 
-				Head.Rotation = new Vector3(_pitch, 0, 0);
+				Head.Rotation = new Vector3(_pitch, 0.0f, 0.0f);
 			} else if (@event.IsActionPressed("interact")) {
 				TryInteract();
 			} else if (@event.IsActionReleased("escape")) {
-				Input.MouseMode = Input.MouseModeEnum.Visible;
-			} else if (@event is InputEventMouseButton mouseButton) {
-				if (mouseButton.Pressed) {
-					Input.MouseMode = Input.MouseModeEnum.Captured;	
-				}
+				GetTree().Quit();
 			}
 		}
 
@@ -69,6 +65,7 @@ namespace SpaceSurvivalHorror.Scripts.PlayerController {
 			
 			velocity.X = direction.X * MoveSpeed;
 			velocity.Y = direction.Y * MoveSpeed;
+			velocity.Z = direction.Z * MoveSpeed;
 			
 			Velocity = velocity;
 
