@@ -46,7 +46,7 @@ namespace SpaceSurvivalHorror.Scripts.PlayerController {
 			Vector3 velocity = Velocity;
 			bool isGrounded = IsOnFloor();
 
-			if (!IsOnFloor()) {
+			if (!isGrounded) {
 				velocity += GetGravity() * (float)delta;
 			}
 
@@ -61,10 +61,18 @@ namespace SpaceSurvivalHorror.Scripts.PlayerController {
 				"game_backward"
 			);
 			
-			Vector3 direction = (GlobalTransform.Basis * new Vector3(movement.X, 0, movement.Y)).Normalized();
+			Vector3 forward = -GlobalTransform.Basis.Z;
+			Vector3 right = GlobalTransform.Basis.X;
+
+			forward.Y = 0;
+			right.Y = 0;
+
+			forward = forward.Normalized();
+			right = right.Normalized();
+
+			Vector3 direction = (right * movement.X + forward * -movement.Y).Normalized();
 			
 			velocity.X = direction.X * MoveSpeed;
-			velocity.Y = direction.Y * MoveSpeed;
 			velocity.Z = direction.Z * MoveSpeed;
 			
 			Velocity = velocity;

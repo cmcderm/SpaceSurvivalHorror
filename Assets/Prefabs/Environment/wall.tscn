@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://moc2bc5o33bs"]
+
+[ext_resource type="ArrayMesh" uid="uid://cq8hoan6achq6" path="res://Assets/kenney_space-station-kit/Models/OBJ format/wall.obj" id="1_e432w"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e432w"]
+points = PackedVector3Array(0.5, 1, 0.15, 0.5, 1, -0.15, -0.5, 1, 0.15, 0.5, 0, 0.15, 0.5, 0, -0.15, -0.5, 1, -0.15, -0.5, 0, 0.15, -0.5, 0, -0.15)
+
+[node name="Wall" type="Node3D" unique_id=1012273935]
+
+[node name="Wall" type="MeshInstance3D" parent="." unique_id=1871339190]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("1_e432w")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall" unique_id=1718959495]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D" unique_id=1391758641]
+shape = SubResource("ConvexPolygonShape3D_e432w")

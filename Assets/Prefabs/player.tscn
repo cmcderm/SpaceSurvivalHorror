@@ -3,11 +3,14 @@
 [ext_resource type="Script" uid="uid://cbrys568skcnf" path="res://Scripts/PlayerController/PlayerController.cs" id="1_tgki7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ngvoe"]
+radius = 0.3
+height = 1.1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yepln"]
+radius = 0.3
+height = 1.1
 
 [node name="Player" type="CharacterBody3D" unique_id=1455927111]
-axis_lock_linear_y = true
 script = ExtResource("1_tgki7")
 
 [node name="Body" type="Node3D" parent="." unique_id=1783240351]
@@ -19,7 +22,7 @@ mesh = SubResource("CapsuleMesh_ngvoe")
 shape = SubResource("CapsuleShape3D_yepln")
 
 [node name="Head" type="Node3D" parent="." unique_id=1240217652]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=256029122]
 

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://behbufm5qp4jo"]
+
+[ext_resource type="PackedScene" uid="uid://dxxk5t2v5ox1g" path="res://Assets/kenney_space-station-kit/Models/GLB format/table-large.glb" id="1_6y7ye"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fkxo1"]
+
+[node name="Table" type="Node3D" unique_id=942432331]
+transform = Transform3D(1.84, 0, 0, 0, 1.84, 0, 0, 0, 1.84, 0, 0, 0)
+
+[node name="table-large2" parent="." unique_id=614173425 instance=ExtResource("1_6y7ye")]
+
+[node name="StaticBody" type="StaticBody3D" parent="." unique_id=920800538]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody" unique_id=31076946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 0.20000005, 0)
+shape = SubResource("BoxShape3D_fkxo1")

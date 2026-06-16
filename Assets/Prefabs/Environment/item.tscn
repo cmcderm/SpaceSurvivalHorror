@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cm835l3n01h74"]
+
+[ext_resource type="PackedScene" uid="uid://c0kco6emlpwsv" path="res://Assets/kenney_space-station-kit/Models/GLB format/container.glb" id="1_g4fqw"]
+
+[node name="Item" type="Node3D" unique_id=390954674]
+
+[node name="container" parent="." unique_id=1930608406 instance=ExtResource("1_g4fqw")]
+transform = Transform3D(0.445, 0, 0, 0, 0.445, 0, 0, 0, 0.445, 0, 0, 0)

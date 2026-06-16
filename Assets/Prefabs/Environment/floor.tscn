@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cvt8b5n2jjexd"]
+
+[ext_resource type="ArrayMesh" uid="uid://by3kgg7vndbtj" path="res://Assets/kenney_space-station-kit/Models/OBJ format/floor.obj" id="1_keq6t"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3p8ui"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0.3, -0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.3, 0.5, 0.5, 0.3, -0.5, 0.5, 0, 0.5, 0.5, 0.3, 0.5)
+
+[node name="Floor" type="Node3D" unique_id=1012273935]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1871339190]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.4, 0)
+mesh = ExtResource("1_keq6t")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=809118385]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=933000055]
+shape = SubResource("ConvexPolygonShape3D_3p8ui")

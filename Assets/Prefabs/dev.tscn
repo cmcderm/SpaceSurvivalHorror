@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://bb7jctqgfn7ie"]
 
 [ext_resource type="Texture2D" uid="uid://biq6o1eeuoqiv" path="res://icon.svg" id="1_coge5"]
+[ext_resource type="PackedScene" uid="uid://behbufm5qp4jo" path="res://Assets/Prefabs/Environment/table.tscn" id="2_ip07q"]
+[ext_resource type="PackedScene" uid="uid://cm835l3n01h74" path="res://Assets/Prefabs/Environment/item.tscn" id="4_lsu16"]
 [ext_resource type="PackedScene" uid="uid://b7a6x1xqfskrp" path="res://Assets/Prefabs/player.tscn" id="5_2bldp"]
-[ext_resource type="PackedScene" uid="uid://dxxk5t2v5ox1g" path="res://Assets/kenney_space-station-kit/Models/GLB format/table-large.glb" id="5_ip07q"]
-[ext_resource type="PackedScene" uid="uid://c0kco6emlpwsv" path="res://Assets/kenney_space-station-kit/Models/GLB format/container.glb" id="6_lsu16"]
-[ext_resource type="MeshLibrary" uid="uid://bptwuqf7ohbgg" path="res://Assets/Resources/MeshLibraries/Kenney_Space-station_floor.tres" id="7_6pbk6"]
+[ext_resource type="PackedScene" uid="uid://py52fufa4j0q" path="res://Assets/Prefabs/Environment/door.tscn" id="5_6pbk6"]
+[ext_resource type="PackedScene" uid="uid://cvt8b5n2jjexd" path="res://Assets/Prefabs/Environment/floor.tscn" id="5_lsu16"]
+[ext_resource type="PackedScene" uid="uid://moc2bc5o33bs" path="res://Assets/Prefabs/Environment/wall.tscn" id="6_lsu16"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fkxo1"]
 
@@ -30,33 +32,68 @@ material_override = SubResource("StandardMaterial3D_daqws")
 mesh = SubResource("BoxMesh_0g12c")
 skeleton = NodePath("../StaticBody")
 
-[node name="Table" type="Node3D" parent="Environment" unique_id=1532327655]
-transform = Transform3D(1.84, 0, 0, 0, 1.84, 0, 0, 0, 1.84, -1, 0.73938954, -10)
-
-[node name="StaticBody" type="StaticBody3D" parent="Environment/Table" unique_id=2097227117]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Table/StaticBody" unique_id=1307176619]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 0.20000005, 0)
-shape = SubResource("BoxShape3D_fkxo1")
-
-[node name="table-large2" parent="Environment/Table" unique_id=1929991968 instance=ExtResource("5_ip07q")]
+[node name="Table" parent="Environment" unique_id=942432331 instance=ExtResource("2_ip07q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.9393896, -7)
 
 [node name="Floor" type="Node3D" parent="Environment" unique_id=471658123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Item2" type="Node3D" parent="Environment" unique_id=157464629]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.5, -9.599999)
+[node name="Floor" parent="Environment/Floor" unique_id=1012273935 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -4)
 
-[node name="Mesh" type="Node3D" parent="Environment/Item2" unique_id=710745998]
+[node name="Floor2" parent="Environment/Floor" unique_id=164740806 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -4)
 
-[node name="container" parent="Environment/Item2/Mesh" unique_id=1615648471 instance=ExtResource("6_lsu16")]
-transform = Transform3D(0.445, 0, 0, 0, 0.445, 0, 0, 0, 0.445, 0, 0, 0)
+[node name="Floor3" parent="Environment/Floor" unique_id=1115179826 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -4)
 
-[node name="GridMap" type="GridMap" parent="Environment" unique_id=1193029111]
-mesh_library = ExtResource("7_6pbk6")
-cell_size = Vector3(1, 1, 1)
-data = {
-"cells": PackedInt32Array(65529, 65532, 4, 65530, 65532, 1441796, 65530, 65533, 655364, 65530, 65534, 0, 65529, 65533, 1048580, 65529, 65534, 1, 65528, 65535, 6, 65529, 65535, 0, 65531, 65534, 0, 65530, 65535, 0, 65528, 65534, 0, 65528, 65533, 1, 65528, 65532, 0, 65528, 65531, 0, 65529, 65531, 0, 65530, 65531, 0, 65531, 65531, 0, 65531, 65533, 0, 65531, 65532, 0, 65531, 65535, 0, 65532, 65535, 0, 65533, 65535, 0, 65533, 65534, 0, 65534, 65534, 0, 65535, 65534, 0, 65535, 65535, 0, 0, 65535, 0, 0, 65534, 0, 65535, 65533, 0, 65534, 65532, 0, 65533, 65532, 0, 65533, 65533, 0, 65534, 65535, 0, 0, 65533, 0, 0, 65532, 655360, 65535, 65532, 0, 65535, 65531, 0, 65535, 65530, 0, 65534, 65530, 0, 65534, 65531, 0, 65533, 65531, 0, 65532, 65532, 0, 65532, 65533, 0, 65532, 65534, 0, 65534, 65533, 0, 65535, 65529, 0, 65534, 65529, 0, 65533, 65529, 0, 65533, 65528, 0, 65533, 65527, 0, 65534, 65527, 0, 65534, 65526, 0, 65534, 65525, 0, 65534, 65524, 0, 65535, 65524, 0, 65533, 65526, 0, 65535, 65526, 0, 0, 65526, 0, 0, 65527, 0, 65535, 65527, 0, 65535, 65528, 0, 65534, 65528, 0, 0, 65528, 0, 1, 65528, 0, 0, 65529, 0, 1, 65529, 0, 2, 65528, 0, 2, 65527, 0, 2, 65526, 0, 2, 65525, 0, 2, 65524, 655366, 1, 65524, 0, 0, 65524, 0, 0, 65525, 0, 1, 65526, 0, 1, 65525, 0, 1, 65527, 0, 65533, 65530, 0, 65532, 65531, 0, 65532, 65530, 0, 65532, 65529, 0, 65532, 65528, 0, 65532, 65527, 0, 65532, 65526, 0, 65531, 65529, 0, 65531, 65530, 0, 65531, 65528, 0, 65531, 65526, 0, 65531, 65527, 0, 65530, 65527, 0, 65530, 65528, 0, 65530, 65526, 0, 65530, 65529, 0, 65529, 65529, 0, 65530, 65530, 0, 65529, 65530, 0, 65528, 65530, 0, 65528, 65529, 0, 65528, 65528, 0, 65529, 65528, 0, 65529, 65527, 0, 65529, 65526, 0, 65528, 65527, 0, 65528, 65526, 0, 65528, 65525, 0, 65529, 65525, 0, 65530, 65525, 0, 65531, 65525, 0, 65532, 65525, 0, 65533, 65525, 0, 65535, 65525, 0, 65533, 65524, 0, 65532, 65524, 0, 65531, 65524, 0, 65530, 65524, 0, 65529, 65524, 0, 65528, 65524, 1441798, 2, 65530, 655360, 2, 65529, 655360, 1, 65530, 655360, 0, 65530, 655360, 0, 65531, 655360, 1, 65532, 655360, 2, 65531, 655360, 1, 65531, 655360, 1, 65533, 655360, 1, 65534, 655360, 1, 65535, 655360, 2, 65535, 1048582, 2, 65534, 655360, 2, 65533, 655360, 2, 65532, 655360)
-}
+[node name="Floor4" parent="Environment/Floor" unique_id=770315951 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -2)
+
+[node name="Floor5" parent="Environment/Floor" unique_id=1604150812 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -2)
+
+[node name="Floor6" parent="Environment/Floor" unique_id=722152269 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
+
+[node name="Floor7" parent="Environment/Floor" unique_id=73584407 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -6)
+
+[node name="Floor8" parent="Environment/Floor" unique_id=505917033 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -6)
+
+[node name="Floor9" parent="Environment/Floor" unique_id=1435250709 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -6)
+
+[node name="Floor10" parent="Environment/Floor" unique_id=1361897023 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -8)
+
+[node name="Floor11" parent="Environment/Floor" unique_id=509932588 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -8)
+
+[node name="Floor12" parent="Environment/Floor" unique_id=1320131260 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -8)
+
+[node name="Floor13" parent="Environment/Floor" unique_id=1938294199 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+
+[node name="Floor14" parent="Environment/Floor" unique_id=1049232025 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+
+[node name="Floor15" parent="Environment/Floor" unique_id=386704117 instance=ExtResource("5_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="Item" parent="Environment" unique_id=390954674 instance=ExtResource("4_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 1.4000001, -6.799999)
+
+[node name="Door" parent="Environment" unique_id=1533360138 instance=ExtResource("5_6pbk6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -4)
+
+[node name="Wall" parent="Environment" unique_id=1604723167 instance=ExtResource("6_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -4)
+
+[node name="Wall2" parent="Environment" unique_id=1498828494 instance=ExtResource("6_lsu16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -4)
 
 [node name="Lights" type="Node3D" parent="." unique_id=1627645716]
 
@@ -64,4 +101,4 @@ data = {
 transform = Transform3D(0.8330371, -0.2020538, 0.5149984, -1.6363e-09, 0.9309156, 0.36523417, -0.55321693, -0.30425364, 0.7754873, 0, 0, 0)
 
 [node name="Player" parent="." unique_id=429711971 instance=ExtResource("5_2bldp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1.6000001, -1)
