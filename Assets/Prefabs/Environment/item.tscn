@@ -1,8 +1,22 @@
 [gd_scene format=3 uid="uid://cm835l3n01h74"]
 
-[ext_resource type="PackedScene" uid="uid://c0kco6emlpwsv" path="res://Assets/kenney_space-station-kit/Models/GLB format/container.glb" id="1_g4fqw"]
+[ext_resource type="Script" uid="uid://bigh8itgyrsk2" path="res://Scripts/Interactable/Item.cs" id="1_rc67m"]
+[ext_resource type="ArrayMesh" uid="uid://dn7y6jhbwmkm6" path="res://Assets/kenney_space-station-kit/Models/OBJ format/container.obj" id="2_rc67m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bq3bq"]
+size = Vector3(0.6, 0.6, 0.6)
 
 [node name="Item" type="Node3D" unique_id=390954674]
+script = ExtResource("1_rc67m")
 
-[node name="container" parent="." unique_id=1930608406 instance=ExtResource("1_g4fqw")]
-transform = Transform3D(0.445, 0, 0, 0, 0.445, 0, 0, 0, 0.445, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2052383627]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = ExtResource("2_rc67m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1678167687]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1400719473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29999998, 0)
+shape = SubResource("BoxShape3D_bq3bq")

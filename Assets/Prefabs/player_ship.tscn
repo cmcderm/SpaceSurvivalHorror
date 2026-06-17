@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bamcp4rsuakg0"]
+
+[ext_resource type="ArrayMesh" uid="uid://c6ws804f6r0h5" path="res://Assets/kenney_space-station-kit/Models/OBJ format/chair-armrest-headrest.obj" id="1_4x6rj"]
+[ext_resource type="Script" uid="uid://bs46dy3jobl8u" path="res://Scripts/Ship/ShipController.cs" id="1_siy6v"]
+[ext_resource type="ArrayMesh" uid="uid://jdwtfo2e5upa" path="res://Assets/kenney_space-station-kit/Models/OBJ format/floor-detail.obj" id="2_nghdp"]
+[ext_resource type="Script" uid="uid://b3rm2nyrde8ud" path="res://Scripts/Ship/ShipChair.cs" id="2_ulat6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jt5f6"]
+radius = 0.2
+height = 0.90000004
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33tel"]
+size = Vector3(1, 0.3, 1)
+
+[node name="PlayerShip" type="Node3D" unique_id=1036763840 node_paths=PackedStringArray("PilotMarker", "_rb")]
+script = ExtResource("1_siy6v")
+PilotMarker = NodePath("Chair/PilotMarker")
+_rb = NodePath("RigidBody3D")
+ThrustStrength = 10.0
+
+[node name="Chair" type="Node3D" parent="." unique_id=1681653191 node_paths=PackedStringArray("_shipController")]
+script = ExtResource("2_ulat6")
+_shipController = NodePath("..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Chair" unique_id=873987163]
+mesh = ExtResource("1_4x6rj")
+skeleton = NodePath("../..")
+
+[node name="PilotMarker" type="Marker3D" parent="Chair" unique_id=1930731360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="InteractionStaticBody" type="StaticBody3D" parent="Chair" unique_id=727182061]
+collision_layer = 4
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Chair/InteractionStaticBody" unique_id=1151966130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24999997, 0)
+shape = SubResource("CapsuleShape3D_jt5f6")
+
+[node name="Body" type="Node3D" parent="." unique_id=1027094832]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=738715722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+mesh = ExtResource("2_nghdp")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=448051276]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=153753661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+shape = SubResource("BoxShape3D_33tel")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D" unique_id=1016935515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24999997, 0)
+shape = SubResource("CapsuleShape3D_jt5f6")

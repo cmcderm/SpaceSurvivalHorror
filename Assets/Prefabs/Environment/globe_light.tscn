@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cqv6lgjwqjlrq"]
+
+[ext_resource type="ArrayMesh" uid="uid://dt2wssjigxuaq" path="res://Assets/kenney_space-station-kit/Models/OBJ format/table-display-planet.obj" id="1_k6tpg"]
+
+[node name="GlobeLight" type="Node3D" unique_id=1838893504]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1856840356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.25)
+mesh = ExtResource("1_k6tpg")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1073088281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10000001, 0)
+light_energy = 0.3
