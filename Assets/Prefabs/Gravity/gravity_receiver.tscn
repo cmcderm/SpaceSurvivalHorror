@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b17lv5ua1s4hs"]
+
+[ext_resource type="Script" uid="uid://baaas33psnthk" path="res://Scripts/Systems/Gravity/GravityReceiver.cs" id="1_a3pfy"]
+
+[node name="GravityReceiver" type="Node3D" unique_id=858430249]
+script = ExtResource("1_a3pfy")

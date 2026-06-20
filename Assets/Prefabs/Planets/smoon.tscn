@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bgo4futmatr13"]
+
+[ext_resource type="Script" uid="uid://c778vkcorexgo" path="res://Scripts/Systems/Gravity/OrbitStarter.cs" id="1_2qcmm"]
+[ext_resource type="PackedScene" uid="uid://b17lv5ua1s4hs" path="res://Assets/Prefabs/Gravity/gravity_receiver.tscn" id="1_7t2l7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipkxh"]
+albedo_color = Color(0.5426972, 0.54269725, 0.54269725, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ipkxh"]
+material = SubResource("StandardMaterial3D_ipkxh")
+radius = 50.0
+height = 100.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7t2l7"]
+radius = 50.0
+
+[node name="Smoon" type="RigidBody3D" unique_id=334484547]
+script = ExtResource("1_2qcmm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=737828418]
+mesh = SubResource("SphereMesh_ipkxh")
+skeleton = NodePath("")
+
+[node name="GravityReceiver" parent="." unique_id=858430249 instance=ExtResource("1_7t2l7")]
+name = "Smoon"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1248700783]
+shape = SubResource("SphereShape3D_7t2l7")

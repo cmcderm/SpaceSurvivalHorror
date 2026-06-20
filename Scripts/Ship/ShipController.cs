@@ -1,17 +1,16 @@
 using Godot;
 using SpaceSurvivalHorror.Scripts.Player;
 
-public partial class ShipController : Node3D {
+public partial class ShipController : RigidBody3D {
 	[Export] public Marker3D PilotMarker;
-		
-	[Export] private RigidBody3D _rb;
+	[Export] public Marker3D ExitMarker;
 
-	[Export] public float ThrustStrength;	
+	[Export] public float ThrustStrength = 100f;
 	
 	private PlayerController _player;
 	private Vector3 _thrust;
 	
-	
+	private bool _waitForInteractionRelease = false;
 	
 	public override void _Ready() {
 		
@@ -21,37 +20,62 @@ public partial class ShipController : Node3D {
 		if (_player == null) {
 			return;
 		}
-		
+
 		_player.SetGlobalPosition(PilotMarker.GlobalPosition);
-		
-		Vector2 input = Input.GetVector(
-			"game_left",
-			"game_right",
-			"game_forward",
-			"game_backward"
-		);
+		_player.SetGlobalRotation(PilotMarker.GlobalRotation);
 
-		float verticalAxis = Input.GetAxis(
-			"game_crouch", 
-			"game_jump"
-		);
+		if (Input.IsActionPressed("game_forward")) {
+			ApplyCentralForce(-GlobalBasis.Z * ThrustStrength);
+		}
 
-		_thrust = new Vector3(input.X, verticalAxis, input.Y);
+		if (Input.IsActionPressed("game_backward")) {
+			ApplyCentralForce(GlobalBasis.Z * ThrustStrength);
+		}
+
+		if (Input.IsActionPressed("game_jump")) {
+			ApplyCentralForce(GlobalBasis.Y * ThrustStrength);
+		}
+
+		if (Input.IsActionPressed("game_crouch")) {
+			ApplyCentralForce(-GlobalBasis.Y * ThrustStrength);
+		}
+
+		if (Input.IsActionPressed("game_left")) {
+			ApplyCentralForce(GlobalBasis.X * ThrustStrength);
+		}
 		
-		_rb.ApplyCentralForce(_thrust * ThrustStrength * (float)delta);
+		if (Input.IsActionPressed("game_right")) {
+			ApplyCentralForce(-GlobalBasis.X * ThrustStrength);
+		}
+		
+		GD.Print($"Ship Velocity {LinearVelocity.Length()} m/s");
 	}
 
 	public override void _UnhandledInput(InputEvent @event) {
 		if (_player == null) {
 			return;
 		}
+		
+		if (!_waitForInteractionRelease && Input.IsActionJustPressed("interact")) {
+			Unbuckle();
+			return;
+		}
 
-		if (@event.IsActionPressed("interact")) {
-			// Get out of the ship
+		if (Input.IsActionJustReleased("interact")) {
+			_waitForInteractionRelease = false;
 		}
 	}
 
 	public void BuckleIn(PlayerController player) {
 		_player = player;
+		_player.BuckleIn(this);
+		_waitForInteractionRelease = true;
+	}
+
+	public void Unbuckle() {
+		_player.SetGlobalPosition(ExitMarker.GlobalPosition);
+		_player.SetGlobalRotation(ExitMarker.GlobalRotation);
+		_player.Unbuckle();
+		_player = null;
 	}
 }
