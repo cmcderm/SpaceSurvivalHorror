@@ -4,17 +4,18 @@ using Godot;
 namespace SpaceSurvivalHorror.Scripts.Systems.Gravity;
 public partial class GravitySource : Node3D
 {
-	[Export] public float Mass = 5e16f; // Mass of default planet
-	[Export] public float AlignmentRadius = 100f;
+	[Export] public float SurfaceGravity = 9f;
+	[Export] public float Radius = 200f;
+	[Export] public float AlignmentRadius = 250f;
 
-	private const float GravitationalConstant = 6.674e-11f;
+	private float Mu => SurfaceGravity * Radius * Radius;
 
-	private Node3D body;
+	private Node3D _body;
 	private RigidBody3D _rb;
 	
 	public override void _Ready() {
 		GravityManager.GravitySources.Add(this);
-		body = GetParent<Node3D>();
+		_body = GetParent<Node3D>();
 		_rb = GetParent<RigidBody3D>();
 	}
 
@@ -23,20 +24,19 @@ public partial class GravitySource : Node3D
 	}
 
 	public Vector3 GetGravityAt(Vector3 worldPos) {
-		Vector3 dir = body.GlobalPosition - worldPos;
-		float dist = dir.Length();
-		if (dist < 0.001f) { return Vector3.Zero; }
+		Vector3 dir = _body.GlobalPosition - worldPos;
+		float distSq = dir.LengthSquared();
 		
-		float gravityStrength = (GravitationalConstant * _rb.Mass) / (dist * dist);
+		if (distSq < 0.001f) { return Vector3.Zero; }
 		
-		return dir.Normalized() * gravityStrength;	
+		return dir.Normalized() * (Mu / distSq);	
 	}
 
 	public bool CanAlignPlayer(Vector3 worldPos) {
-		return (body.GlobalPosition - worldPos).LengthSquared() > AlignmentRadius * AlignmentRadius;
+		return (_body.GlobalPosition - worldPos).LengthSquared() > AlignmentRadius * AlignmentRadius;
 	}
 
 	public Vector3 GetUpDirection(Vector3 worldPos) {
-		return -(body.GlobalPosition - worldPos).Normalized();
+		return -(_body.GlobalPosition - worldPos).Normalized();
 	}
 }

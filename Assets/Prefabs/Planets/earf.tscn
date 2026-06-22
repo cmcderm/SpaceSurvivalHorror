@@ -12,6 +12,7 @@ radius = 200.0
 height = 400.0
 
 [node name="Earf" type="RigidBody3D" unique_id=732031630]
+mass = 100000.0
 
 [node name="GravitySource" parent="." unique_id=380024394 instance=ExtResource("1_hifoo")]
 AlignmentRadius = 150.0

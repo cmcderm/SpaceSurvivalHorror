@@ -13,7 +13,7 @@ public partial class PlayerController : CharacterBody3D {
 	[Export] public bool Enabled = true;
 	[Export] public float Acceleration = 25f;
 	[Export] public float MoveSpeed = 5.0f;
-	[Export] public float JumpVelocity = 10f;
+	[Export] public float JumpVelocity = 50f;
 	[Export] public float MouseSensitivity = 0.001f;
 	[Export] public float VerticalLookMax = Mathf.DegToRad(89f);	
 	
@@ -28,8 +28,6 @@ public partial class PlayerController : CharacterBody3D {
 	IInteractable _currentInteractable;	
 	
 	private float _pitch;
-	private Vector3 _upDir = Vector3.Up;
-
 	private uint _savedLayer;
 	private uint _savedMask;
 	private bool _waitForInteractionRelease = false;
@@ -83,7 +81,7 @@ public partial class PlayerController : CharacterBody3D {
 	}
 	
 	public override void _PhysicsProcess(double delta) {
-		DebugOverlay.SetValue("Player Velocity", Mathf.Floor(Velocity.Length()));
+		DebugOverlay.SetValue("Player Velocity", $"{Velocity.Length():0.00}  m/s");
 		if (playerMode != PlayerMode.Walking || !Enabled) {
 			return;
 		}
@@ -93,14 +91,16 @@ public partial class PlayerController : CharacterBody3D {
 
 		Vector3 localGravity = GetLocalGravity();	
 		
-		DebugOverlay.SetValue("Player Gravity", localGravity + " m/s");
+		DebugOverlay.SetValue("Player Gravity", localGravity);
 		
-		velocity += localGravity * (float)delta;
+		velocity += localGravity;
 
 		AlignWithGravity(delta);
+		
+		DebugOverlay.SetValue("Player Up Direction", UpDirection);
 
 		if (isGrounded && Input.IsActionJustPressed("game_jump")) {
-			velocity += _upDir * JumpVelocity;
+			velocity += UpDirection * JumpVelocity;
 		}
 
 		Vector2 input = Input.GetVector(
@@ -113,15 +113,15 @@ public partial class PlayerController : CharacterBody3D {
 		Vector3 forward = -GlobalBasis.Z;
 		Vector3 right = GlobalBasis.X;
 
-		forward = forward.Slide(_upDir).Normalized();
-		right = right.Slide(_upDir).Normalized();
+		forward = forward.Slide(UpDirection).Normalized();
+		right = right.Slide(UpDirection).Normalized();
 		
 		forward = forward.Normalized();
 		right = right.Normalized();
 
 		Vector3 direction = (right * input.X + forward * -input.Y).Normalized();
 
-		Vector3 surfaceVelocity = velocity.Slide(_upDir);
+		Vector3 surfaceVelocity = velocity.Slide(UpDirection);
 		Vector3 verticalVelocity = velocity - surfaceVelocity;
 
 		Vector3 targetSurfaceVelocity = direction * MoveSpeed;
