@@ -20,8 +20,6 @@ public partial class TPSPlayerController : CharacterBody3D
 		CameraMount = GetNode<Node3D>("CameraRig/ShoulderOffset/CameraMount");
 		camera3d = GetNode<Camera3D>("CameraRig/ShoulderOffset/CameraMount/Camera3d");
 		
-		GD.Print(CameraRig);
-		GD.Print(CameraMount);
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
@@ -47,8 +45,6 @@ public partial class TPSPlayerController : CharacterBody3D
 	}
 	
 	private void ProcessMouseMotionEvent(InputEventMouseMotion e) {
-		GD.Print("Mouse Motion: " + e.Relative);
-
 		CameraRig.RotateY(Mathf.DegToRad(-e.Relative.X * SensHorizontal));
 		
 		// Clamp vertical rotation

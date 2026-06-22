@@ -48,7 +48,7 @@ public partial class ShipController : RigidBody3D {
 			ApplyCentralForce(-GlobalBasis.X * ThrustStrength);
 		}
 		
-		GD.Print($"Ship Velocity {LinearVelocity.Length()} m/s");
+		DebugOverlay.SetValue("Ship Velocity",  LinearVelocity.Length());
 	}
 
 	public override void _UnhandledInput(InputEvent @event) {

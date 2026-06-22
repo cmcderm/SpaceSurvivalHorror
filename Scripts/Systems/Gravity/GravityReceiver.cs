@@ -17,7 +17,6 @@ public partial class GravityReceiver : Node3D {
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 totalGravity = GravityManager.GetGravityAt(_rb.GlobalPosition);
-		GD.Print($"{name} {totalGravity.Length()} pos: {_rb.GlobalPosition.Length()}");
 		_rb.ApplyCentralForce(totalGravity * _rb.Mass);
 	}
 }

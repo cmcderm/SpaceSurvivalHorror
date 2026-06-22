@@ -83,6 +83,7 @@ public partial class PlayerController : CharacterBody3D {
 	}
 	
 	public override void _PhysicsProcess(double delta) {
+		DebugOverlay.SetValue("Player Velocity", Mathf.Floor(Velocity.Length()));
 		if (playerMode != PlayerMode.Walking || !Enabled) {
 			return;
 		}
@@ -90,9 +91,11 @@ public partial class PlayerController : CharacterBody3D {
 		Vector3 velocity = Velocity;
 		bool isGrounded = IsOnFloor();
 
-		if (!isGrounded) {
-			velocity += GetLocalGravity() * (float)delta;
-		}
+		Vector3 localGravity = GetLocalGravity();	
+		
+		DebugOverlay.SetValue("Player Gravity", localGravity + " m/s");
+		
+		velocity += localGravity * (float)delta;
 
 		AlignWithGravity(delta);
 
