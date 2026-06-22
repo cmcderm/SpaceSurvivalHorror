@@ -1,0 +1,22 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dbe1gs0hefvqs"]
+
+[ext_resource type="Texture2D" uid="uid://c14rx85kn8siv" path="res://Assets/Materials/Grass/grass_1-1K/grass_1_basecolor-1K.png" id="1_jgcvs"]
+[ext_resource type="Texture2D" uid="uid://ddal1n3x28wfu" path="res://Assets/Materials/Grass/grass_1-1K/grass_1_ambientocclusion-1K.png" id="2_qxkht"]
+[ext_resource type="Texture2D" uid="uid://bw1pig1q76piu" path="res://Assets/Materials/Grass/grass_1-1K/grass_1_height-1K.png" id="3_emeup"]
+[ext_resource type="Texture2D" uid="uid://ch1b03xah5osp" path="res://Assets/Materials/Grass/grass_1-1K/grass_1_metallic-1K.png" id="4_laf23"]
+[ext_resource type="Texture2D" uid="uid://g2y52mifrtm0" path="res://Assets/Materials/Grass/grass_1-1K/grass_1_normal-1K.png" id="5_f6d66"]
+[ext_resource type="Texture2D" uid="uid://t6wcjrv4rvnv" path="res://Assets/Materials/Grass/grass_1-1K/grass_1_roughness-1K.png" id="6_vil4n"]
+
+[resource]
+albedo_color = Color(0.734698, 1, 0.7451514, 1)
+albedo_texture = ExtResource("1_jgcvs")
+metallic_specular = 0.09
+metallic_texture = ExtResource("4_laf23")
+roughness_texture = ExtResource("6_vil4n")
+normal_enabled = true
+normal_texture = ExtResource("5_f6d66")
+ao_enabled = true
+ao_texture = ExtResource("2_qxkht")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_emeup")
+uv1_triplanar = true

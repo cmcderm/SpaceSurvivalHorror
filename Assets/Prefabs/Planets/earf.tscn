@@ -1,15 +1,13 @@
 [gd_scene format=3 uid="uid://b3hwyhkqv4mi2"]
 
 [ext_resource type="PackedScene" uid="uid://dnfmgfo0j2ahw" path="res://Assets/Prefabs/Gravity/gravity_source.tscn" id="1_hifoo"]
+[ext_resource type="Material" uid="uid://dbe1gs0hefvqs" path="res://Assets/Materials/Grass/grass_1-1K/grass_1-1K.tres" id="2_a727i"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hifoo"]
 radius = 200.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fyw87"]
-albedo_color = Color(0.5468543, 1, 0.62782896, 1)
-
 [sub_resource type="SphereMesh" id="SphereMesh_fyw87"]
-material = SubResource("StandardMaterial3D_fyw87")
+material = ExtResource("2_a727i")
 radius = 200.0
 height = 400.0
 
@@ -22,5 +20,6 @@ AlignmentRadius = 150.0
 shape = SubResource("SphereShape3D_hifoo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=737828418]
+material_override = ExtResource("2_a727i")
 mesh = SubResource("SphereMesh_fyw87")
 skeleton = NodePath("")
